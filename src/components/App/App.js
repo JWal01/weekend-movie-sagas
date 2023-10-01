@@ -12,7 +12,7 @@ function App() {
         </Route>
         
         {/* Details page */}
-
+        
         {/* Add Movie page */}
       </Router>
     </div>
