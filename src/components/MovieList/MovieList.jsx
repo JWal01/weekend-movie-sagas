@@ -18,7 +18,6 @@ function MovieList() {
  //Function to handleClick and navigate to the details page.
  const handleClick = () => {
     console.log("details page");
-   
     history.push('/details/:id');
   }; 
 

@@ -53,7 +53,7 @@ const genres = (state = [], action) => {
 }
 
 // Create one store that all components can use
-const storeInstance = createStore(
+const store = createStore(
     combineReducers({
         movies,
         genres,
@@ -68,8 +68,10 @@ sagaMiddleware.run(rootSaga);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={storeInstance}>
+        <Provider store={store}>
             <App />
         </Provider>
     </React.StrictMode>
 );
+
+export default store;
