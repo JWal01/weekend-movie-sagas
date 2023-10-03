@@ -10,12 +10,9 @@ const MovieDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
+  
 
-  useEffect(() => {
-    console.log('in useEffect');
-    const action = { type: '', payload: id};
-    dispatch(action);
-  }, []);
+ 
  
   const homeButtonClick = () => {
     console.log("home Page");
