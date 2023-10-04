@@ -25,10 +25,3 @@ module.exports = router;
 
 
 
-// SELECT "movies"."title" AS "movie_title",
-//  "movies"."description" AS "movie_description", 
-//  "movies"."poster" AS "movie_poster", 
-//   "genres"."name" AS "genre_name"
-// FROM "movies"
-// JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
-// JOIN "genres" ON "movies_genres"."genre_id" = "genres"."id"

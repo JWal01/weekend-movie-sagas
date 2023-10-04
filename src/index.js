@@ -82,7 +82,7 @@ const genres = (state = [], action) => {
 // Used to store selected Movie
 const selectMovie = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GENRES':
+        case 'SET_MOVIE_DETAIL':
             return action.payload;
             default:
                 return state;
@@ -91,7 +91,7 @@ const selectMovie = (state = [], action) => {
 
 
 // Create one store that all components can use
-const store = createStore(
+const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
@@ -107,10 +107,9 @@ sagaMiddleware.run(rootSaga);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
+        <Provider store={storeInstance}>
             <App />
         </Provider>
     </React.StrictMode>
 );
 
-export default store;
