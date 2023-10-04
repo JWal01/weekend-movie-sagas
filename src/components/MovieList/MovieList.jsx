@@ -15,10 +15,13 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
- //Function to handleClick and navigate to the details page.
- const handleClick = () => {
-    console.log("details page");
-    history.push('/details/:id');
+ //
+ const handleClick = (id) => {
+    //Dispatch the payload of id to rootsaga.
+    dispatch({ type: 'FETCH_DETAIL', payload: id });
+    dispatch({ type: 'FETCH_GENRES', payload: id });
+
+    history.push(`/details/${id}`);
   }; 
 
     return (
@@ -29,7 +32,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img onClick={() => handleClick() } src={movie.poster} alt={movie.title}/>
+                            <img onClick={() => handleClick(movie.id) } src={movie.poster} alt={movie.title}/>
                         </div>
                     );
                 })}

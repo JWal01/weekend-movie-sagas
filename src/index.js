@@ -12,8 +12,12 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
+//watcherSaga 
+//receives payload of id from the handleClick function in the MovieList.
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_DETAIL', fetchDetails);
+    yield takeEvery('FETCH_GENRE', fetchGenre)
 }
 
 function* fetchAllMovies() {
@@ -28,6 +32,30 @@ function* fetchAllMovies() {
     }
         
 }
+
+function* fetchDetails(action) {
+    //Gets selected movie from the DB by using the id received form the handleClick function in MovieList
+    try{
+        const movie = yield axios.get(`/api/movie/details/${action.payload}`);
+        
+        yield put({ type: 'SET_MOVIE_DETAIL', payload: movie.data[0] })
+    }catch (error){
+        console.log('error in fetchDetails', error);
+    }
+};
+
+function* fetchGenre(action) {
+    //gets the movie genres from the DB by using the id received form the handleClick fruntion in movielist. 
+    try{
+        const genres = yield axios.get(`api/genre/details/${action.payload}`)
+
+        yield put({ type: 'SET_GENRES', payload: genres.data});
+        console.log(genres.data);
+    }catch (error){
+        console.log('error in fetchGenre', error);
+    }
+}
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -51,12 +79,23 @@ const genres = (state = [], action) => {
             return state;
     }
 }
+// Used to store selected Movie
+const selectMovie = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_GENRES':
+            return action.payload;
+            default:
+                return state;
+    }
+}
+
 
 // Create one store that all components can use
 const store = createStore(
     combineReducers({
         movies,
         genres,
+        selectMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
