@@ -34,7 +34,8 @@ function MovieDetail(){
   return(
     <main>
     <div>
-        <h1>Movie Details</h1>
+        <h1>{movie.title}</h1>
+        <div>
           <ul>
             {genres.map((genre, id) => (
             <li key={id}>{genre.genre}</li>
@@ -45,7 +46,7 @@ function MovieDetail(){
               <div>
                   <img id="detail-image" src={movie.poster} alt={movie.title}/>
                      <p id="description">{movie.description}</p>
-
+         </div>
               </div>
               <button onClick={homeButtonClick}>Home</button>
     </div>
