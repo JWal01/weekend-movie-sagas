@@ -19,7 +19,7 @@ function MovieList() {
  const handleClick = (id) => {
     //Dispatch the payload of id to rootsaga.
     dispatch({ type: 'FETCH_DETAIL', payload: id });
-    dispatch({ type: 'FETCH_GENRES', payload: id });
+    dispatch({ type: 'FETCH_GENRE', payload: id });
 
     history.push(`/details/${id}`);
   }; 

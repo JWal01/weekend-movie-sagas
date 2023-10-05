@@ -1,6 +1,7 @@
 import {useParams, useHistory} from "react-router-dom"
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import './MovieDetail.css'
 
 
 
@@ -36,7 +37,7 @@ function MovieDetail(){
     <div>
         <h1>{movie.title}</h1>
         <div>
-          <ul>
+          <ul className="genres" >
             {genres.map((genre, id) => (
             <li key={id}>{genre.genre}</li>
           ))}
