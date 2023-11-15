@@ -11,12 +11,11 @@ function MovieDetail(){
   const { id } = useParams();
   const dispatch = useDispatch();
   
-  //Access movies from the store
+
   const movie = useSelector(store => store.selectMovie);
-  //Access genres from the store
   const genres = useSelector(store => store.genres)
 
-   //using useHistory to bring us back to the home page. 
+   
    const homeButtonClick = () => {
     console.log("home Page");
     history.push('/');
@@ -38,8 +37,8 @@ function MovieDetail(){
         <h1>{movie.title}</h1>
         <div>
           <ul className="genres" >
-            {genres.map((genre, id) => (
-            <li key={id}>{genre.genre}</li>
+            {genres.map((genres, id) => (
+            <li key={id}>{genres.genres}</li>
           ))}
             </ul>
            <br></br>
